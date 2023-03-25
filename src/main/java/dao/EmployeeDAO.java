@@ -12,7 +12,8 @@ public interface EmployeeDAO {
 
     List<Employee> readAll();
 
-    void updateById(int id, Employee employee);
+    void updateById(Employee employee);
 
-    void deleteById(int id);
+    void deleteById(Employee employee);
+
 }

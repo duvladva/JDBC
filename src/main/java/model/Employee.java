@@ -1,20 +1,27 @@
 package model;
 
+import javax.persistence.*;
 import java.util.Objects;
 
+@Entity
+@Table(name = "employee")
 public class Employee {
 
-
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id")
     private int id;
 
-    private String first_name;
-
-    private String last_name;
-
+    @Column(name = "first_name")
+    private String firstName;
+    @Column(name = "last_name")
+    private String lastName;
+    @Column(name = "gender")
     private String gender;
+    @Column(name = "age")
     private int age;
-
-    private int city_id;
+    @Column(name = "city_id")
+    private int cityId;
 
     public Employee() {
     }
@@ -22,12 +29,13 @@ public class Employee {
 
     public Employee(int id, String first_name, String last_name, String gender, int age, int city_id) {
         this.id = id;
-        this.first_name = first_name;
-        this.last_name = last_name;
+        this.firstName = first_name;
+        this.lastName = last_name;
         this.gender = gender;
         this.age = age;
-        this.city_id = city_id;
+        this.cityId = city_id;
     }
+
 
     public int getId() {
         return id;
@@ -38,19 +46,19 @@ public class Employee {
     }
 
     public String getFirst_name() {
-        return first_name;
+        return firstName;
     }
 
     public void setFirst_name(String first_name) {
-        this.first_name = first_name;
+        this.firstName = first_name;
     }
 
     public String getLast_name() {
-        return last_name;
+        return lastName;
     }
 
     public void setLast_name(String last_name) {
-        this.last_name = last_name;
+        this.lastName = last_name;
     }
 
     public String getGender() {
@@ -70,11 +78,11 @@ public class Employee {
     }
 
     public int getCity_id() {
-        return city_id;
+        return cityId;
     }
 
     public void setCity_id(int city_id) {
-        this.city_id = city_id;
+        this.cityId = city_id;
     }
 
     @Override
@@ -82,23 +90,23 @@ public class Employee {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Employee employee = (Employee) o;
-        return id == employee.id && age == employee.age && Objects.equals(first_name, employee.first_name) && Objects.equals(last_name, employee.last_name) && Objects.equals(gender, employee.gender) && Objects.equals(city_id, employee.city_id);
+        return id == employee.id && age == employee.age && Objects.equals(firstName, employee.firstName) && Objects.equals(lastName, employee.lastName) && Objects.equals(gender, employee.gender) && Objects.equals(cityId, employee.cityId);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, first_name, last_name, gender, age, city_id);
+        return Objects.hash(id, firstName, lastName, gender, age, cityId);
     }
 
     @Override
     public String toString() {
         return "Employee{" +
                 "id=" + id +
-                ", first_name='" + first_name + '\'' +
-                ", last_name='" + last_name + '\'' +
+                ", first_name='" + firstName + '\'' +
+                ", last_name='" + lastName + '\'' +
                 ", gender='" + gender + '\'' +
                 ", age=" + age +
-                ", city_id=" + city_id +
+                ", city_id=" + cityId +
                 '}';
     }
 }
