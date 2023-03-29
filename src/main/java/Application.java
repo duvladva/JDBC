@@ -1,11 +1,15 @@
+import dao.CityDAO;
 import dao.EmployeeDAO;
+import dao.impl.CityDAOImpl;
 import dao.impl.EmployeeDAOImpl;
+import model.City;
 import model.Employee;
 
 import java.sql.*;
-import java.util.List;
 
 public class Application {
+
+
     public static void main(String[] args) throws SQLException {
 
         // Создаем переменные с данными для подключения к базе
@@ -43,36 +47,53 @@ public class Application {
 //                System.out.println(cityId);
 
         // Создаем объект класса DAO
-        EmployeeDAO employeeDAO = new EmployeeDAOImpl();
-        Employee employee1 = new Employee(3,"Дмитрий", "Дмитриев", "муж", 33, 3);
+//        EmployeeDAO employeeDAO = new EmployeeDAOImpl();
+//        Employee employee1 = new Employee("Дмитрий", "Дмитриев", "муж", 33, 3);
 //
 //        // Создаем объект
-        employeeDAO.create(employee1);
+//        employeeDAO.create(employee1);
 //
 //        // Получаем объект по id
-        System.out.println(employeeDAO.readById(1));
+//        System.out.println(employeeDAO.readById(1));
 //
 //        // Получаем полный список объектов и выводим в консоль
-        List<Employee> list1 = employeeDAO.readAll();
-        for (Employee person : list1) {
-            System.out.println(person);
-        }
+//        List<Employee> list1 = employeeDAO.readAll();
+//        for (Employee person : list1) {
+//            System.out.println(person);
+//        }
 //
 //        // Создаем новый объект (запись) и вставляем ее в таблицу employee
-        Employee employee3 = new Employee(3, "Григорий", "Григорьев",
-                "муж", 43, 1);
-        employeeDAO.updateById(employee3);
+//        Employee employee3 = new Employee("Григорий", "Григорьев", "муж", 43, 1);
+//        employeeDAO.updateById(employee3);
 
         /// Получаем полный список объектов и выводим в консоль
-        List<Employee> list2 = employeeDAO.readAll();
-        for (Employee person : list2) {
-            System.out.println(person);
-        }
+//        List<Employee> list2 = employeeDAO.readAll();
+//        for (Employee person : list2) {
+//            System.out.println(person);
+//        }
 //
 //        // Удаляем записи из таблицы employee запись с id=5
-        Employee employee5 = employeeDAO.readById(5);
-        employeeDAO.deleteById(employee5);
+//        Employee employee5 = employeeDAO.readById(5);
+//        employeeDAO.deleteById(employee5);
+//    }
+        EmployeeDAO EMPLOYEE_DAO = new EmployeeDAOImpl();
+        CityDAO CITY_DAO = new CityDAOImpl();
+
+        City newCity = new City("Донецк");
+        CITY_DAO.create(newCity);
+        CITY_DAO.readAll().forEach(System.out::println);
+
+        Employee newPeople = new Employee("Игорь", "Игорев", "муж", 40, newCity);
+        EMPLOYEE_DAO.create(newPeople);
+        EMPLOYEE_DAO.readAll().forEach(System.out::println);
+
+        System.out.println(CITY_DAO.readById(3));
+
+        CITY_DAO.delete(CITY_DAO.readById(newCity.getCity_id()));
+        CITY_DAO.readAll().forEach(System.out::println);
+        EMPLOYEE_DAO.readAll().forEach(System.out::println);
     }
+
 }
 
 

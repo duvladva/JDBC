@@ -1,32 +1,48 @@
 package model;
 
+import lombok.NoArgsConstructor;
+
+import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
+@Entity
+@NoArgsConstructor
+@Table(name = "city")
 public class City {
+    @Id
+    @GeneratedValue (strategy = GenerationType.IDENTITY)
 
+    @Column(name = "city_id")
     private int cityId;
+
+    @Column(name = "city_name")
     private String cityName;
 
-    public City(int city_id, String city_name) {
-        this.cityId = city_id;
-        this.cityName = city_name;
+    @OneToMany(mappedBy="city", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    private List<Employee> employees;
+
+
+    public City(String cityName) {
+        this.cityName = cityName;
     }
 
     public int getCity_id() {
         return cityId;
     }
 
-    public void setCity_id(int city_id) {
-        this.cityId = city_id;
-    }
-
-    public String getCity_name() {
-        return cityName;
-    }
-
-    public void setCity_name(String city_name) {
-        this.cityName = city_name;
-    }
+//    public void setCity_id(int city_id) {
+//        this.cityId = city_id;
+//    }
+//
+//    public String getCity_name() {
+//        return cityName;
+//    }
+//
+//    public void setCity_name(String city_name) {
+//        this.cityName = city_name;
+//    }
 
     @Override
     public boolean equals(Object o) {

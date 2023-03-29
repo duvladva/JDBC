@@ -1,8 +1,15 @@
 package model;
 
+import lombok.*;
+
 import javax.persistence.*;
 import java.util.Objects;
 
+@Getter
+@Setter
+@EqualsAndHashCode
+@NoArgsConstructor
+@AllArgsConstructor
 @Entity
 @Table(name = "employee")
 public class Employee {
@@ -20,15 +27,26 @@ public class Employee {
     private String gender;
     @Column(name = "age")
     private int age;
-    @Column(name = "city_id")
-    private int cityId;
 
-    public Employee() {
-    }
+    @ManyToOne
+    @JoinColumn(name = "city_id")
+    private City cityId;
 
 
-    public Employee(int id, String first_name, String last_name, String gender, int age, int city_id) {
-        this.id = id;
+//    public Employee() {
+//    }
+
+
+//    public Employee(int id, String first_name, String last_name, String gender, int age, City city_id) {
+//        this.id = id;
+//        this.firstName = first_name;
+//        this.lastName = last_name;
+//        this.gender = gender;
+//        this.age = age;
+//        this.cityId = city_id;
+//    }
+
+    public Employee(String first_name, String last_name, String gender, int age, City city_id) {
         this.firstName = first_name;
         this.lastName = last_name;
         this.gender = gender;
@@ -37,53 +55,53 @@ public class Employee {
     }
 
 
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    public String getFirst_name() {
-        return firstName;
-    }
-
-    public void setFirst_name(String first_name) {
-        this.firstName = first_name;
-    }
-
-    public String getLast_name() {
-        return lastName;
-    }
-
-    public void setLast_name(String last_name) {
-        this.lastName = last_name;
-    }
-
-    public String getGender() {
-        return gender;
-    }
-
-    public void setGender(String gender) {
-        this.gender = gender;
-    }
-
-    public int getAge() {
-        return age;
-    }
-
-    public void setAge(int age) {
-        this.age = age;
-    }
-
-    public int getCity_id() {
-        return cityId;
-    }
-
-    public void setCity_id(int city_id) {
-        this.cityId = city_id;
-    }
+//    public int getId() {
+//        return id;
+//    }
+//
+//    public void setId(int id) {
+//        this.id = id;
+//    }
+//
+//    public String getFirst_name() {
+//        return firstName;
+//    }
+//
+//    public void setFirst_name(String first_name) {
+//        this.firstName = first_name;
+//    }
+//
+//    public String getLast_name() {
+//        return lastName;
+//    }
+//
+//    public void setLast_name(String last_name) {
+//        this.lastName = last_name;
+//    }
+//
+//    public String getGender() {
+//        return gender;
+//    }
+//
+//    public void setGender(String gender) {
+//        this.gender = gender;
+//    }
+//
+//    public int getAge() {
+//        return age;
+//    }
+//
+//    public void setAge(int age) {
+//        this.age = age;
+//    }
+//
+//    public int getCity_id() {
+//        return cityId;
+//    }
+//
+//    public void setCity_id(int city_id) {
+//        this.cityId = city_id;
+//    }
 
     @Override
     public boolean equals(Object o) {
