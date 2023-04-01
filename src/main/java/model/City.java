@@ -20,7 +20,7 @@ public class City {
     @Column(name = "city_name")
     private String cityName;
 
-    @OneToMany(mappedBy="city", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @OneToMany(mappedBy="cityId", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private List<Employee> employees;
 
 

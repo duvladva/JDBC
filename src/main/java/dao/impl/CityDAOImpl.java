@@ -23,10 +23,10 @@ public class CityDAOImpl implements CityDAO {
     }
 
     @Override
-    public City readById(int city_id) {
+    public City readById(int cityId) {
         try (Session session = HibernateSessionFactoryUtil.getSessionFactory().openSession()) {
             Transaction transaction = session.beginTransaction();
-            City city = session.get(City.class, city_id);
+            City city = session.get(City.class, cityId);
             transaction.commit();
             return city;
         }
@@ -68,8 +68,5 @@ public class CityDAOImpl implements CityDAO {
     }
 
 
-    @Override
-    public Employee findEmployeeById(int city_id) {
-        return HibernateSessionFactoryUtil.getSessionFactory().openSession().get(Employee.class, city_id);
-    }
+
 }

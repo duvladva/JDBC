@@ -67,4 +67,14 @@ public class EmployeeDAOImpl implements EmployeeDAO {
             e.printStackTrace();
         }
     }
+
+//    @Override
+//    public Employee findEmployeeById(int id) {
+//        return null;
+//    }
+
+    @Override
+    public Employee findEmployeeById(int cityId) {
+        return HibernateSessionFactoryUtil.getSessionFactory().openSession().get(Employee.class, cityId);
+    }
 }
